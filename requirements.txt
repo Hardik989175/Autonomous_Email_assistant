@@ -1,0 +1,47 @@
+Complete Dependencies & Setup for the AI Email Assistant
+===================================================================
+This file lists all the necessary components to run the application.
+It includes Python packages and other required command-line tools.
+
+-------------------------------------------------------------------
+Part 1: Python Package Requirements
+-------------------------------------------------------------------
+Save the following lines into a file named requirements.txt and
+then run the command: pip install -r requirements.txt
+For the modern, themed desktop user interface
+Customtkinter
+
+For connecting to Google Gemini AI to generate email content
+google-generativeai
+
+For browser automation to control Gmail and send the email
+playwright
+
+For securely loading credentials (API keys, passwords) from the .env file
+python-dotenv
+
+-------------------------------------------------------------------
+Part 2: Browser Engine Installation (Required for Playwright)
+-------------------------------------------------------------------
+After installing the Python packages, you must run this separate
+command in your terminal. It downloads the browser engines (like
+Chromium) that Playwright needs to control a browser.
+Command to run in your terminal:
+playwright install
+===================================================================
+All-in-One Setup Commands
+===================================================================
+For a complete setup from scratch, run these commands in your
+terminal in the following order:
+1. # Create a virtual environment
+python -m venv venv
+2. # Activate the environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+3. # Install all Python libraries from this file
+pip install -r requirements.txt
+4. # Install the necessary browser engines
+playwright install
+===================================================================
