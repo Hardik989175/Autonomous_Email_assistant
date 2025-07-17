@@ -2,6 +2,16 @@
 
 A smart desktop application that provides a conversational chat interface for users to generate and automatically send professional emails using AI and browser automation.
 
+## Project Overview & Key Features
+
+This project brings together cutting-edge AI and automation to create a truly helpful email assistant. Instead of filling out forms, you can interact with the agent through a natural, conversational chat interface. The agent is designed to understand your intent, ask for the absolute minimum information required, and then take over the entire process of writing and sending the email.
+
+* **Natural Conversation Flow:** The agent doesn't use forms. It engages in a flowing conversation, asking for one piece of information at a time (like the recipient or topic) to feel like you're talking to a real assistant.
+* **Intelligent AI Content Generation:** Powered by the Google Gemini API, the agent doesn't just fill in templates. It understands the intent behind your request and generates a complete, professional, and context-aware email draft from scratch. It is explicitly programmed to never use placeholders.
+* **Live Visual Feedback:** The agent shows you what it's doing. When it's time to send the email, it launches a visible browser window, allowing you to watch the entire process in real-time as it logs in, composes the message, and clicks send.
+* **Step-by-Step Screenshotting:** For a complete audit trail, the agent automatically captures and saves screenshots at every critical step of the browser automation process, from the login page to the final "message sent" confirmation.
+* **Robust Authentication & Captcha Handling:** The system is designed to handle modern web security. By launching a visible browser. This "human-in-the-loop" approach is a reliable solution for complex login challenges.
+
 ---
 
 * [Architecture Overview](#️-architecture-overview)
