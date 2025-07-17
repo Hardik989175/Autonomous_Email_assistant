@@ -4,11 +4,10 @@ A smart desktop application that provides a conversational chat interface for us
 
 ---
 
-## Table of Contents
-- Architecture Overview
-- Technology Stack & Justification
-- Setup and Running Instructions
-- Challenges Faced & Solutions Implemented
+* [Architecture Overview](#️-architecture-overview)
+* [Technology Stack & Justification](#-technology-stack--justification)
+* [Setup and Running Instructions](#-setup-and-running-instructions)
+* [Challenges Faced & Solutions Implemented](#-challenges-faced--solutions-implemented)
 
 ---
 
