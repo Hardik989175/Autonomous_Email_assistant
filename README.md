@@ -116,7 +116,7 @@ Each technology in this project was chosen for a specific reason to maximize per
 
 ---
 
-## Setup and Running Instructions
+## Setup and Running Instructions(I have done this in Visual Studio Code)
 
 ### Prerequisites
 
