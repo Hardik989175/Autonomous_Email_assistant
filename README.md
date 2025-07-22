@@ -40,19 +40,29 @@ graph TD
         F -->|User Clicks 'Yes'| H[Initiate Sending]
         I[Show Success/Error] --> A
     end
-
-    subgraph "Agent Logic (agent/)"
+    subgraph "Execution Layers (agent/)"
         E --> J(email_generator.py)
         J -->|AI Draft| F
-        H --> K(browser_automation.py)
-        K -->|Status| I
+        
+        H --> K_Check{Check for Saved Profile?}
+        K_Check -- No --> K_Autofill[Autofill Credentials]
+        K_Autofill --> K_Manual_Pause{Wait for Human 2FA/CAPTCHA}
+        K_Manual_Pause --> K_Save[Save New Session]
+        K_Save --> K_Send[Compose & Send Email]
+        
+        K_Check -- Yes --> K_Auto[Automatic Login]
+        K_Auto --> K_Send
+
+        K_Send -->|Status| I
     end
 
     subgraph "External Systems & Outputs"
         J <-->|API Call| L((Google Gemini AI))
-        K -->|Control| M((Gmail via Browser))
+        K_Send -->|Control| M((Gmail via Browser))
         M --> N([screenshots/ folder])
     end
+
+
 
     style A fill:#ffffff,stroke:#4ADEDE,stroke-width:2px
     style B fill:#ffffff,stroke:#4ADEDE,stroke-width:2px
@@ -147,6 +157,7 @@ Email-assistant/
 │   ├── 05_email_composed.png
 │   └── 06_email_sent.png
 ├── app.py
+├── profile_raj5528yadav_gmail_com  # This is an example of the profile folder to be created for the given email id for the first time.
 ├── .env
 └── requirements.txt
 ```
@@ -218,7 +229,6 @@ A chat-based desktop window will appear and is ready to use.
 - **Solution**: Google being a billion dollar company invested highly in security and we can not handle **2FA/Captcha automatically, also it violates platform rules.** So, smart manual intervention is required. First, the agent launches the dedicated browser for the account you provided. To make the process as smooth as possible, it then performs a *best-effort attempt to automatically fill in the email and password fields* for you. This is the initial 'automated' part of our flow, designed to assist and speed up the process. At this point, the agent's logic recognizes that it has reached a critical security checkpoint: a **CAPTCHA or a 2-Factor Authentication prompt**. Our agent does not attempt to programmatically guess or bypass these security measures. **Attempting to do so is fundamentally insecure, unreliable, and violates the terms of service of the platform.**
 Instead, the agent intelligently pauses its own execution and **securely hands control over to you, the human user**. Our terminal will clearly state that it is now waiting for you to complete the login. This is the **explicit manual intervention** part of our flow. It ensures that your sensitive 2FA codes and security gestures are handled in the most secure way possible by you. The agent patiently and actively **waits in the background, watching the browser for a successful login**. The moment it detects that the Gmail inbox has loaded, it knows you've succeeded.
 It then automatically resumes its task, seamlessly taking back control to compose and send the email. In that same instant, the successful login session is **permanently saved** to that user's unique profile folder. This entire **manual handshake** is a one-time event for this account on this machine. The next time you need to send an email using that same email address, the agent will find the existing, trusted profile folder. It will launch the browser and go **directly to the inbox**, **completely bypassing the login, CAPTCHA, and 2FA steps.**
-
 **So, to be perfectly explicit: our agent uses a partially automated** flow for the **very first login on any new account**, which then enables a **fully automated** flow for all subsequent uses. This hybrid approach provides the best possible balance of security, reliability, and long-term convenience."
 
 
